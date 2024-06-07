@@ -5,8 +5,8 @@ import random
 # definindo as config do game
 NUM_LINHAS = 4
 NUM_COLUNAS = 4
-QUADRADO_SIZE_WITH = 10
-QUADRADO_SIZE_HIGHT = 5
+QUADRADO_SIZE_WIDTH = 10
+QUADRADO_SIZE_HEIGHT = 5
 CORES_QUADRADO = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'cyan', 'magenta']
 COR_FUNDO = '#343a40'
 COR_LETRA = '#ffffff'
@@ -27,11 +27,26 @@ def create_square_grid():
         grid.append(linha)
     return grid
 
-
 # criando a interface principal
 janela = tk.Tk()
 janela.title('Jogo da Memória')
 janela.configure(bg=COR_FUNDO)
+
+# criando grid dos quadrados
+grid = create_square_grid()
+quadrados = []
+quadrado_mostrado = []
+quadrado_correspondente = []
+numero_tentativas = 0
+
+for linha in range(NUM_LINHAS):
+    linha_quadrados = []
+    for coluna in range(NUM_COLUNAS):
+        quadrado = tk.Button(janela, width=QUADRADO_SIZE_WIDTH, height=QUADRADO_SIZE_HEIGHT, bg='black', relief=tk.RAISED, bd=3)
+        quadrado.grid(row=linha, column=coluna, padx=5, pady=5)
+        linha_quadrados.append(quadrado)
+    quadrados.append(linha_quadrados)
+
 
 # personalizando o botao
 button_style = {'activebackground': '#f8f9fa', 'font':FONT_STYLE, 'fg':COR_LETRA}
